@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 
 /*
@@ -9,10 +9,13 @@ import {useState} from 'react'
 
 */
 
-export default function background() {
-    const [inputValues, setInputValues] = useState([]);
-    const [isEditing, setEditing] = useState(true);
-    
+export default function Background() {
+    const [inputValues, setInputValues] = useState({Name: '', Sex: '', Email: '', Address: ''});
+    //const [isEditing, setEditing] = useState(true);
+    const handlesubmit = () => {
+        console.log(inputValues);
+    }
+
     return(
         <>
         <ProfileInfo
@@ -21,43 +24,51 @@ export default function background() {
             onChange = {(e) => setInputValues({...inputValues, 'Name': e.target.value})}
             
         />
+        
 
         <ProfilePic
         
         />
         
 
-        <submitBtn
+        <SubmitBtn
             text = 'Submit'
-            handleSubmit = {handleSubmit}
+            handlesubmit = {handlesubmit}
         />
         
         </>
     )
+    
 }
 
-function handleSubmit(e){
-    setInputValues({...inputValues, [e.target.name]: e.target.value});
-    setEditing(false);
+/*
+function handlesubmit(inputValues){
+    //setInputValues({...inputValues, [e.target.name]: e.target.value});
+    console.log(inputValues);
+    
 }
+*/
 
+/*
 function handleEdit(){
     setEditing(true);
 }
+*/
 
-function submitBtn(text, handleSubmit) {
+function SubmitBtn({text, handlesubmit}) {
     return (
         <>
         <button
-            text = {text}
-            onClick = {handleSubmit}
-        />
+            onClick = {handlesubmit}
+        >
+        {text}
+        </button>
         </>
     )
 }
 
 
-function ProfileInfo({label, type, value, onChange, placeHolder}) {
+function ProfileInfo({label, type, value, onChange}) {
     return(
         <>
         {label} 
@@ -65,7 +76,7 @@ function ProfileInfo({label, type, value, onChange, placeHolder}) {
             type = {type}
             value = {value}
             onChange = {onChange}
-            placeHolder = {`Enter ${label}`}
+            placeholder = {`Enter ${label}`}
         />
         </>
     )
