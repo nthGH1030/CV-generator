@@ -10,21 +10,34 @@ import {useState, useEffect} from 'react'
 */
 
 export default function Background() {
-    const [inputValues, setInputValues] = useState({Name: '', Sex: '', Email: '', Address: ''});
+    const [inputValues, setInputValues] = useState({
+        Name: '', 
+        Sex: '', 
+        Birth: '', 
+        Address: '', 
+        Email: '', 
+        PhoneNumber: ''
+    });
     //const [isEditing, setEditing] = useState(true);
+    
     const handlesubmit = () => {
         console.log(inputValues);
     }
 
     return(
         <>
-        <ProfileInfo
-            label = "Name: "
-            value = {inputValues['Name']}
-            onChange = {(e) => setInputValues({...inputValues, 'Name': e.target.value})}
+        {Object.entries(inputValues).map(([key, value]) => (
+            <ProfileInfo
+                key = {key}
+                label = {key}
+                value = {value}
+                onChange = {(e) => setInputValues({...inputValues, [key]: e.target.value})}
+                
+            />
             
-        />
-        
+
+        ))}
+  
 
         <ProfilePic
         
@@ -68,7 +81,7 @@ function SubmitBtn({text, handlesubmit}) {
 }
 
 
-function ProfileInfo({label, type, value, onChange}) {
+function ProfileInfo({label,type, value, onChange}) {
     return(
         <>
         {label} 
@@ -78,6 +91,7 @@ function ProfileInfo({label, type, value, onChange}) {
             onChange = {onChange}
             placeholder = {`Enter ${label}`}
         />
+        <br />
         </>
     )
 }
