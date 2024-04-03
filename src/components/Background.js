@@ -81,12 +81,12 @@ function SubmitBtn({text, handlesubmit}) {
 }
 
 
-function ProfileInfo({label,type, value, onChange}) {
+function ProfileInfo({label, value, onChange}) {
     return(
         <>
         {label} 
         <input
-            type = {type}
+            type = "text"
             value = {value}
             onChange = {onChange}
             placeholder = {`Enter ${label}`}
