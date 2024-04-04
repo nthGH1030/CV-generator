@@ -2,10 +2,9 @@ import {useState, useEffect} from 'react'
 
 
 /*
-1. handle isediting by toggle a class that lock and unlock the input field
-2. Does setinput take the value as key / value pairs? need a data structure to store things 
-3. How to allow user to upload profile pic
-4. 
+1. Once user clicked submit, change state to lock furhter user input, unclok user clicked edit button
+2. How to allow user to upload profile pic
+3. 
 
 */
 
@@ -20,10 +19,6 @@ export default function Background() {
     });
     //const [isEditing, setEditing] = useState(true);
     
-    const handlesubmit = () => {
-        console.log(inputValues);
-    }
-
     return(
         <>
         {Object.entries(inputValues).map(([key, value]) => (
@@ -34,8 +29,6 @@ export default function Background() {
                 onChange = {(e) => setInputValues({...inputValues, [key]: e.target.value})}
                 
             />
-            
-
         ))}
   
 
@@ -46,7 +39,7 @@ export default function Background() {
 
         <SubmitBtn
             text = 'Submit'
-            handlesubmit = {handlesubmit}
+            handlesubmit = {() => handleSubmit(inputValues)}
         />
         
         </>
@@ -54,13 +47,14 @@ export default function Background() {
     
 }
 
-/*
-function handlesubmit(inputValues){
+
+function handleSubmit(inputValues){
     //setInputValues({...inputValues, [e.target.name]: e.target.value});
     console.log(inputValues);
     
 }
-*/
+
+
 
 /*
 function handleEdit(){
@@ -84,7 +78,7 @@ function SubmitBtn({text, handlesubmit}) {
 function ProfileInfo({label, value, onChange}) {
     return(
         <>
-        {label} 
+        {`${label} :`}
         <input
             type = "text"
             value = {value}
