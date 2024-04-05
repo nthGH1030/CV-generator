@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react'
+import '.././styles.css'
 
 
 /*
@@ -17,17 +18,22 @@ export default function Background() {
         Email: '', 
         PhoneNumber: ''
     });
-    //const [isEditing, setEditing] = useState(true);
-    
+    const [isEditing, setEditing] = useState(true);
+
+    const handleDisable = (isEditing) => {
+        setEditing(isEditing)
+        console.log(isEditing)
+    }
+
     return(
         <>
         {Object.entries(inputValues).map(([key, value]) => (
-            <ProfileInfo
+            <ProfileInfo 
                 key = {key}
                 label = {key}
                 value = {value}
                 onChange = {(e) => setInputValues({...inputValues, [key]: e.target.value})}
-                
+                disabled = {isEditing}
             />
         ))}
   
@@ -40,6 +46,8 @@ export default function Background() {
         <SubmitBtn
             text = 'Submit'
             handlesubmit = {() => handleSubmit(inputValues)}
+            handleDisable = {() => handleDisable(false)}
+
         />
         
         </>
@@ -62,11 +70,17 @@ function handleEdit(){
 }
 */
 
-function SubmitBtn({text, handlesubmit}) {
+
+function SubmitBtn({text, handlesubmit, handleDisable}) {
+    const handleClick = () => {
+        handlesubmit();
+        handleDisable();
+    }
+    
     return (
         <>
         <button
-            onClick = {handlesubmit}
+            onClick = {handleClick} 
         >
         {text}
         </button>
@@ -75,15 +89,21 @@ function SubmitBtn({text, handlesubmit}) {
 }
 
 
-function ProfileInfo({label, value, onChange}) {
+function ProfileInfo({label, value, onChange, disabled}) {
+
+    const inputClassName = disabled ? 'disabled' : '';
+
     return(
         <>
         {`${label} :`}
         <input
-            type = "text"
+            type = "text" 
             value = {value}
             onChange = {onChange}
             placeholder = {`Enter ${label}`}
+            className = {inputClassName}
+            disabled = {disabled}
+            
         />
         <br />
         </>
