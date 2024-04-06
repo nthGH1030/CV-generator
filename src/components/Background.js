@@ -87,7 +87,7 @@ function SubmitBtn({text, handlesubmit, handleDisable}) {
 
 function ProfileInfo({label, value, onChange, isEditing}) {
 
-    //const inputClassName = isEditing ? 'disabled' : '';
+    const inputClassName = isEditing ? '' : 'disabled';
 
     return(
         <>
@@ -97,7 +97,7 @@ function ProfileInfo({label, value, onChange, isEditing}) {
             value = {value}
             onChange = {onChange}
             placeholder = {`Enter ${label}`}
-            //className = {inputClassName}
+            className = {inputClassName}
             disabled = {!isEditing}
             
         />
