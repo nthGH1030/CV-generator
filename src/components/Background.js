@@ -20,11 +20,6 @@ export default function Background() {
     });
     const [isEditing, setEditing] = useState(true);
 
-    const handleDisable = (isEditing) => {
-        setEditing(isEditing)
-        console.log(isEditing)
-    }
-
     return(
         <>
         {Object.entries(inputValues).map(([key, value]) => (
@@ -33,7 +28,7 @@ export default function Background() {
                 label = {key}
                 value = {value}
                 onChange = {(e) => setInputValues({...inputValues, [key]: e.target.value})}
-                disabled = {isEditing}
+                isEditing = {isEditing}
             />
         ))}
   
@@ -46,7 +41,7 @@ export default function Background() {
         <SubmitBtn
             text = 'Submit'
             handlesubmit = {() => handleSubmit(inputValues)}
-            handleDisable = {() => handleDisable(false)}
+            handleDisable = {() => setEditing(false)}
 
         />
         
@@ -75,6 +70,7 @@ function SubmitBtn({text, handlesubmit, handleDisable}) {
     const handleClick = () => {
         handlesubmit();
         handleDisable();
+
     }
     
     return (
@@ -89,9 +85,9 @@ function SubmitBtn({text, handlesubmit, handleDisable}) {
 }
 
 
-function ProfileInfo({label, value, onChange, disabled}) {
+function ProfileInfo({label, value, onChange, isEditing}) {
 
-    const inputClassName = disabled ? 'disabled' : '';
+    //const inputClassName = isEditing ? 'disabled' : '';
 
     return(
         <>
@@ -101,8 +97,8 @@ function ProfileInfo({label, value, onChange, disabled}) {
             value = {value}
             onChange = {onChange}
             placeholder = {`Enter ${label}`}
-            className = {inputClassName}
-            disabled = {disabled}
+            //className = {inputClassName}
+            disabled = {!isEditing}
             
         />
         <br />
