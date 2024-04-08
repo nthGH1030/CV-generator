@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 import '.././styles.css'
 
 
@@ -87,7 +87,7 @@ function SubmitBtn({text, handlesubmit, handleDisable}) {
 
 function ProfileInfo({label, value, onChange, isEditing}) {
 
-    const inputClassName = isEditing ? '' : 'disabled';
+    const classDisable = isEditing ? '' : 'disabled';
 
     return(
         <>
@@ -97,7 +97,7 @@ function ProfileInfo({label, value, onChange, isEditing}) {
             value = {value}
             onChange = {onChange}
             placeholder = {`Enter ${label}`}
-            className = {inputClassName}
+            className = {classDisable}
             disabled = {!isEditing}
             
         />
@@ -109,6 +109,11 @@ function ProfileInfo({label, value, onChange, isEditing}) {
 function ProfilePic(){
     return (
         <>
+        <input
+            type = "file"
+            accept = "image/png, image/jpeg, image/gif"
+
+        />
         </>
     )
 
