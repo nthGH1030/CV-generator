@@ -21,9 +21,11 @@ export default function Background() {
     const [isEditing, setEditing] = useState(true);
     const [profilePic, setProfilePic] = useState(null);
 
+    /*
     useEffect(() => {
         console.log(profilePic);
     }, [profilePic]);
+    */
 
     return(
         <>
@@ -41,14 +43,14 @@ export default function Background() {
         <ProfilePic
             onChange = {(e) => setProfilePic(e.target.files[0])
             }
-
+            isEditing = {isEditing}
 
         />
         
 
         <SubmitBtn
             text = 'Submit'
-            handlesubmit = {() => handleSubmit(inputValues)}
+            handlesubmit = {() => handleSubmit(inputValues, profilePic)}
             handleDisable = {() => setEditing(false)}
 
         />
@@ -59,9 +61,10 @@ export default function Background() {
 }
 
 
-function handleSubmit(inputValues){
+function handleSubmit(inputValues, profilePic){
     //setInputValues({...inputValues, [e.target.name]: e.target.value});
     console.log(inputValues);
+    console.log(profilePic);
     
 }
 
@@ -114,14 +117,18 @@ function ProfileInfo({label, value, onChange, isEditing}) {
     )
 }
 
-function ProfilePic({onChange}){
+function ProfilePic({onChange, isEditing}){
+
+    const classDisable = isEditing ? '' : 'disabled';
+
     return (
         <>
         <input
             type = "file"
             accept = "image/png, image/jpeg, image/gif"
             onChange = {onChange}
-
+            className = {classDisable}
+            disabled = {!isEditing}
         />
         </>
     )
