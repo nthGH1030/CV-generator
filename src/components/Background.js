@@ -1,10 +1,10 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import '.././styles.css'
 
 
 /*
 1. Once user clicked submit, change state to lock furhter user input, unclok user clicked edit button
-2. How to allow user to upload profile pic
+2. How to show the profile pic uploaded by user
 3. 
 
 */
@@ -19,6 +19,11 @@ export default function Background() {
         PhoneNumber: ''
     });
     const [isEditing, setEditing] = useState(true);
+    const [profilePic, setProfilePic] = useState(null);
+
+    useEffect(() => {
+        console.log(profilePic);
+    }, [profilePic]);
 
     return(
         <>
@@ -34,7 +39,10 @@ export default function Background() {
   
 
         <ProfilePic
-        
+            onChange = {(e) => setProfilePic(e.target.files[0])
+            }
+
+
         />
         
 
@@ -106,12 +114,13 @@ function ProfileInfo({label, value, onChange, isEditing}) {
     )
 }
 
-function ProfilePic(){
+function ProfilePic({onChange}){
     return (
         <>
         <input
             type = "file"
             accept = "image/png, image/jpeg, image/gif"
+            onChange = {onChange}
 
         />
         </>
