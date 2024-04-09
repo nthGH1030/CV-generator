@@ -2,3 +2,15 @@
   background-color: lightgray
   
 }
+
+.inputField {
+  width: 30%;
+  padding-left: 10px;
+  border-radius: 4px;
+  
+}
+
+.profilePic {
+  right : 10%;
+
+}

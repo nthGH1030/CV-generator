@@ -33,19 +33,21 @@ export default function Background() {
             />
         ))}
   
-
+        <br />
         <ProfilePic
             onChange = {(e) => setProfilePic(e.target.files[0])
             }
             isEditing = {isEditing}
-
         />
+        <br />
+
+        
 
         <EditBtn
             handleEdit = {() => setEditing(true)}
         />
         
-
+        
         <SubmitBtn
             handlesubmit = {() => handleSubmit(inputValues, profilePic)}
             handleDisable = {() => setEditing(false)}
@@ -113,7 +115,7 @@ function ProfileInfo({label, value, onChange, isEditing}) {
             value = {value}
             onChange = {onChange}
             placeholder = {`Enter ${label}`}
-            className = {classDisable}
+            className = {`${classDisable} inputField`}
             disabled = {!isEditing}
             
         />
@@ -132,7 +134,7 @@ function ProfilePic({onChange, isEditing}){
             type = "file"
             accept = "image/png, image/jpeg, image/gif"
             onChange = {onChange}
-            className = {classDisable}
+            className = {`${classDisable} profilePic`}
             disabled = {!isEditing}
         />
         </>
