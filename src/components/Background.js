@@ -21,12 +21,6 @@ export default function Background() {
     const [isEditing, setEditing] = useState(true);
     const [profilePic, setProfilePic] = useState(null);
 
-    /*
-    useEffect(() => {
-        console.log(profilePic);
-    }, [profilePic]);
-    */
-
     return(
         <>
         {Object.entries(inputValues).map(([key, value]) => (
@@ -45,6 +39,10 @@ export default function Background() {
             }
             isEditing = {isEditing}
 
+        />
+
+        <EditBtn
+            handleEdit = {() => setEditing(true)}
         />
         
 
@@ -69,14 +67,6 @@ function handleSubmit(inputValues, profilePic){
 }
 
 
-
-/*
-function handleEdit(){
-    setEditing(true);
-}
-*/
-
-
 function SubmitBtn({text, handlesubmit, handleDisable}) {
     const handleClick = () => {
         handlesubmit();
@@ -90,6 +80,22 @@ function SubmitBtn({text, handlesubmit, handleDisable}) {
             onClick = {handleClick} 
         >
         {text}
+        </button>
+        </>
+    )
+}
+
+function EditBtn({handleEdit}) {
+    const handleClick = () => {
+        handleEdit();
+    }
+
+    return (
+        <>
+        <button
+            onClick = {handleClick}
+        >
+        Edit
         </button>
         </>
     )
