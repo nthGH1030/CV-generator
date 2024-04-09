@@ -47,7 +47,6 @@ export default function Background() {
         
 
         <SubmitBtn
-            text = 'Submit'
             handlesubmit = {() => handleSubmit(inputValues, profilePic)}
             handleDisable = {() => setEditing(false)}
 
@@ -67,7 +66,7 @@ function handleSubmit(inputValues, profilePic){
 }
 
 
-function SubmitBtn({text, handlesubmit, handleDisable}) {
+function SubmitBtn({handlesubmit, handleDisable}) {
     const handleClick = () => {
         handlesubmit();
         handleDisable();
@@ -79,7 +78,7 @@ function SubmitBtn({text, handlesubmit, handleDisable}) {
         <button
             onClick = {handleClick} 
         >
-        {text}
+        Submit
         </button>
         </>
     )
