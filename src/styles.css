@@ -1,13 +1,20 @@
+/* style that all elemenet shares */
 input:disabled {
   background-color: gray
 }
 
-input:focus{
-  background-color: lightgray
-}
-
 button:hover {
   color: lightgray
+}
+
+/* This is profile info's style */
+.profile-info {
+  display: flex;
+  align-items: center;
+}
+
+input:focus{
+  background-color: lightgray
 }
 
 .inputField {
@@ -23,11 +30,8 @@ button:hover {
   margin-right: 10px;
 }
 
-.profile-info {
-  display: flex;
-  align-items: center;
-}
 
+/* This is profile pic's style */
 .profilePic {
   width: 30%;
   text-align: left
