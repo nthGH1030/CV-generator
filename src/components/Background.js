@@ -105,8 +105,6 @@ function EditBtn({handleEdit}) {
 
 function ProfileInfo({label, value, onChange, isEditing}) {
 
-    const classDisable = isEditing ? '' : 'disabled';
-
     return(
         <>
         {`${label} :`}
@@ -115,7 +113,7 @@ function ProfileInfo({label, value, onChange, isEditing}) {
             value = {value}
             onChange = {onChange}
             placeholder = {`Enter ${label}`}
-            className = {`${classDisable} inputField`}
+            className = {`inputField`}
             disabled = {!isEditing}
             
         />
@@ -126,15 +124,13 @@ function ProfileInfo({label, value, onChange, isEditing}) {
 
 function ProfilePic({onChange, isEditing}){
 
-    const classDisable = isEditing ? '' : 'disabled';
-
     return (
         <>
         <input
             type = "file"
             accept = "image/png, image/jpeg, image/gif"
             onChange = {onChange}
-            className = {`${classDisable} profilePic`}
+            className = {`profilePic`}
             disabled = {!isEditing}
         />
         </>

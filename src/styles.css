@@ -1,6 +1,13 @@
-.disabled {
-  background-color: lightgray
-  
+input:disabled {
+  background-color: gray
+}
+
+input:hover{
+  color: gray
+}
+
+button:hover {
+  color: gray
 }
 
 .inputField {
@@ -11,6 +18,14 @@
 }
 
 .profilePic {
-  right : 10%;
+  width: 30%;
 
+}
+
+input::file-selector-button {
+  font-weight: bold;
+  color: dodgerblue;
+  padding: 0.5em;
+  border: thin solid grey;
+  border-radius: 3px;
 }
