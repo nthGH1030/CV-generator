@@ -106,19 +106,19 @@ function EditBtn({handleEdit}) {
 function ProfileInfo({label, value, onChange, isEditing}) {
 
     return(
-        <>
-        {`${label} :`}
-        <input
-            type = "text" 
-            value = {value}
-            onChange = {onChange}
-            placeholder = {`Enter ${label}`}
-            className = {`inputField`}
-            disabled = {!isEditing}
-            
-        />
-        <br />
-        </>
+        <div className = "profile-info">
+            <label className = "label">{`${label} :`} </label>
+        
+            <input
+                type = "text" 
+                value = {value}
+                onChange = {onChange}
+                placeholder = {`Enter ${label}`}
+                className = {`inputField`}
+                disabled = {!isEditing} 
+            />
+            <br />
+        </div>
     )
 }
 

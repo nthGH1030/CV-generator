@@ -17,8 +17,20 @@ button:hover {
   
 }
 
+.label {
+  min-width: 100px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+}
+
 .profilePic {
   width: 30%;
+  text-align: left
 
 }
 
