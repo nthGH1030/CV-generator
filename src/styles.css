@@ -2,12 +2,12 @@ input:disabled {
   background-color: gray
 }
 
-input:hover{
-  color: gray
+input:focus{
+  background-color: lightgray
 }
 
 button:hover {
-  color: gray
+  color: lightgray
 }
 
 .inputField {
@@ -28,4 +28,8 @@ input::file-selector-button {
   padding: 0.5em;
   border: thin solid grey;
   border-radius: 3px;
+}
+
+input::file-selector-button:hover {
+  background-color: lightgray
 }
