@@ -1,3 +1,22 @@
+/* profile div */
+.profile-container {
+  display: flex;
+  margin: 10px;
+}
+
+.profile-infoContainer {
+  flex: 1;
+  display: flex; 
+  flex-direction: column;
+  margin-right: 10px;
+}
+
+.profile-pic-container {
+  display: flex;
+  margin-left: 100px; 
+  flex: 0 0 300px;
+}
+
 /* style that all elemenet shares */
 input:disabled {
   background-color: gray
@@ -18,10 +37,9 @@ input:focus{
 }
 
 .inputField {
-  width: 30%;
+  width: 50%;
   padding-left: 10px;
   border-radius: 4px;
-  
 }
 
 .label {
@@ -33,7 +51,6 @@ input:focus{
 
 /* This is profile pic's style */
 .profilePic {
-  width: 30%;
   text-align: left
 
 }

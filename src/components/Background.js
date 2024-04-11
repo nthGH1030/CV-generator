@@ -23,23 +23,27 @@ export default function Background() {
 
     return(
         <>
-        {Object.entries(inputValues).map(([key, value]) => (
-            <ProfileInfo 
-                key = {key}
-                label = {key}
-                value = {value}
-                onChange = {(e) => setInputValues({...inputValues, [key]: e.target.value})}
+        <div className = "profile-container">
+            <div className = "profile-infoContainer">
+            {Object.entries(inputValues).map(([key, value]) => (
+                <ProfileInfo 
+                    key = {key}
+                    label = {key}
+                    value = {value}
+                    onChange = {(e) => setInputValues({...inputValues, [key]: e.target.value})}
+                    isEditing = {isEditing}
+                />
+            ))}
+            </div>
+            <div className = "profile-pic-container">
+            <ProfilePic
+                onChange = {(e) => setProfilePic(e.target.files[0])
+                }
                 isEditing = {isEditing}
             />
-        ))}
-  
-        <br />
-        <ProfilePic
-            onChange = {(e) => setProfilePic(e.target.files[0])
-            }
-            isEditing = {isEditing}
-        />
-        <br />
+            </div>
+        </div>
+
 
         
 
