@@ -1,7 +1,7 @@
 /* profile div */
 .profile-container {
   display: flex;
-  margin: 10px;
+  margin: 50px;
 }
 
 .profile-infoContainer {
@@ -11,9 +11,11 @@
 }
 
 .profile-pic-container {
+  display: flex;
   margin-left: 100px; 
   flex: 0 0 300px;
-  align-self: flex-end;
+  align-items: center;
+  justify-content: center;
 }
 
 /* style that all elemenet shares */
@@ -29,6 +31,19 @@ button:hover {
 .profile-info {
   display: flex;
   align-items: center;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.profile-info label {
+  flex: 0 0 150px; 
+  font-size: 20px; 
+}
+
+.profile-info input {
+  flex: 1; 
+  font-size: 16px; 
+  padding: 10px; 
 }
 
 input:focus{
@@ -49,11 +64,6 @@ input:focus{
 
 
 /* This is profile pic's style */
-.profilePic {
-  align-items: bottom-left;
-
-}
-
 input::file-selector-button {
   font-weight: bold;
   color: dodgerblue;
@@ -66,3 +76,11 @@ input::file-selector-button:hover {
   background-color: lightgray
 }
 
+.profilePic{
+  display: flex;
+  padding-bottom: 100%; 
+  border: 2px solid gray; 
+  box-sizing: border-box; 
+  overflow: hidden; 
+  aspect-ratio: 1/1;
+}
