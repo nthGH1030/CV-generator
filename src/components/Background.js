@@ -132,21 +132,21 @@ function ProfilePic({onChange, isEditing, profilePic}){
     
     return (
         <>  
-            <div className={`profilePic ${!isEditing && 'profilePic--disabled'}`}>
+            <div className = 'profilePic'>
                 {profilePic && <img src={profilePic} alt="Profile" />}
                 {!profilePic && isEditing && (
-            <div className="profilePic__placeholder">
+            <div className="profilePic__label">
                 <span>Upload Image</span>
             </div>
         )}
-      </div>
+      
         <input
             type = "file"
             accept = "image/png, image/jpeg, image/gif"
             onChange = {onChange}
-            className = {`profilePic`}
             disabled = {!isEditing}
         />
+        </div>
         </>
     )
 
