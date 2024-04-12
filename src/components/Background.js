@@ -37,10 +37,12 @@ export default function Background() {
             </div>
             <div className = "profile-pic-container">
             <ProfilePic
-                onChange = {(e) => setProfilePic(e.target.files[0])
-                }
+                onChange = {(e) => setProfilePic(URL.createObjectURL(e.target.files[0]))}
                 isEditing = {isEditing}
+                profilePic = {profilePic}
+                
             />
+
             </div>
         </div>
 
@@ -126,10 +128,18 @@ function ProfileInfo({label, value, onChange, isEditing}) {
     )
 }
 
-function ProfilePic({onChange, isEditing}){
-
+function ProfilePic({onChange, isEditing, profilePic}){
+    
     return (
-        <>
+        <>  
+            <div className={`profilePic ${!isEditing && 'profilePic--disabled'}`}>
+                {profilePic && <img src={profilePic} alt="Profile" />}
+                {!profilePic && isEditing && (
+            <div className="profilePic__placeholder">
+                <span>Upload Image</span>
+            </div>
+        )}
+      </div>
         <input
             type = "file"
             accept = "image/png, image/jpeg, image/gif"

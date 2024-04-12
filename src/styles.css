@@ -6,15 +6,14 @@
 
 .profile-infoContainer {
   flex: 1;
-  display: flex; 
   flex-direction: column;
   margin-right: 10px;
 }
 
 .profile-pic-container {
-  display: flex;
   margin-left: 100px; 
   flex: 0 0 300px;
+  align-self: flex-end;
 }
 
 /* style that all elemenet shares */
@@ -51,7 +50,7 @@ input:focus{
 
 /* This is profile pic's style */
 .profilePic {
-  text-align: left
+  align-items: bottom-left;
 
 }
 
@@ -66,3 +65,4 @@ input::file-selector-button {
 input::file-selector-button:hover {
   background-color: lightgray
 }
+
