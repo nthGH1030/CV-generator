@@ -16,7 +16,7 @@ export default function Background() {
         Birth: '', 
         Address: '', 
         Email: '', 
-        PhoneNumber: ''
+        Phone: ''
     });
     const [isEditing, setEditing] = useState(true);
     const [profilePic, setProfilePic] = useState(null);

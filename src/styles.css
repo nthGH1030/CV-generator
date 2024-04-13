@@ -1,4 +1,4 @@
-/* profile div */
+/* profile container */
 .profile-container {
   display: flex;
   margin: 50px;
@@ -12,9 +12,8 @@
 
 .profile-pic-container {
   display: flex;
-  margin-left: 100px; 
+  margin: 10px 10px 20px 100px; 
   flex: 0 0 300px;
-  align-items: center;
   justify-content: center;
 }
 
@@ -78,7 +77,6 @@ input::file-selector-button:hover {
 
 .profilePic{
   display: flex;
-  padding-bottom: 100%; 
   border: 2px solid gray; 
   box-sizing: border-box; 
   overflow: hidden; 
