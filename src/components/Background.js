@@ -35,27 +35,26 @@ export default function Background() {
                 />
             ))}
             </div>
-            <div className = "profile-pic-container">
-            <ProfilePic
-                onChange = {(e) => setProfilePic(URL.createObjectURL(e.target.files[0]))}
-                isEditing = {isEditing}
-                profilePic = {profilePic}
-                
-            />
 
+            <div className = "profile-pic-container">
+                <ProfilePic
+                    onChange = {(e) => setProfilePic(URL.createObjectURL(e.target.files[0]))}
+                    isEditing = {isEditing}
+                    profilePic = {profilePic}
+                    
+                />
+
+                <div className = "edit-submit-container">
+                    <EditBtn
+                        handleEdit = {() => setEditing(true)}
+                    />
+                    <SubmitBtn
+                        handlesubmit = {() => handleSubmit(inputValues, profilePic)}
+                        handleDisable = {() => setEditing(false)}
+                    />
+                </div>
             </div>
         </div>
-
-        <div className = "edit-submit-container">
-            <EditBtn
-                handleEdit = {() => setEditing(true)}
-            />
-            <SubmitBtn
-                handlesubmit = {() => handleSubmit(inputValues, profilePic)}
-                handleDisable = {() => setEditing(false)}
-            />
-        </div>
-        
         </>
     )
     
