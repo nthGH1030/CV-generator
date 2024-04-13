@@ -17,14 +17,39 @@
   justify-content: center;
 }
 
-/* style that all elemenet shares */
+/* style button and input field */
 input:disabled {
   background-color: gray
 }
 
 button:hover {
-  color: lightgray
+  background-color: lightgray
 }
+
+/* edit and submit button */
+.edit-submit-container{
+  display: flex;
+  margin-right: 30px;
+  justify-content:flex-end;
+  height: 50px;
+  gap:10px;
+
+}
+
+.button.edit{
+  width: 10%;
+  height:100%;
+  border-radius: 10px;
+  border: solid;
+}
+
+.button.submit{
+  width: 10%;
+  height:100%;
+  border-radius: 10px;
+  border: solid;
+}
+
 
 /* This is profile info's style */
 .profile-info {

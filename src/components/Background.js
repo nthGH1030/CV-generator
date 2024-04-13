@@ -46,19 +46,15 @@ export default function Background() {
             </div>
         </div>
 
-
-        
-
-        <EditBtn
-            handleEdit = {() => setEditing(true)}
-        />
-        
-        
-        <SubmitBtn
-            handlesubmit = {() => handleSubmit(inputValues, profilePic)}
-            handleDisable = {() => setEditing(false)}
-
-        />
+        <div className = "edit-submit-container">
+            <EditBtn
+                handleEdit = {() => setEditing(true)}
+            />
+            <SubmitBtn
+                handlesubmit = {() => handleSubmit(inputValues, profilePic)}
+                handleDisable = {() => setEditing(false)}
+            />
+        </div>
         
         </>
     )
@@ -85,6 +81,7 @@ function SubmitBtn({handlesubmit, handleDisable}) {
         <>
         <button
             onClick = {handleClick} 
+            className = "button edit"
         >
         Submit
         </button>
@@ -101,6 +98,7 @@ function EditBtn({handleEdit}) {
         <>
         <button
             onClick = {handleClick}
+            className = "button edit"
         >
         Edit
         </button>
@@ -133,13 +131,15 @@ function ProfilePic({onChange, isEditing, profilePic}){
     return (
         <>  
         <div className = 'profilePic'>
-            {profilePic && <img src={profilePic} alt="Profile" height = "300px" width = "300px" />}
-        <input
-            type = "file"
-            accept = "image/png, image/jpeg, image/gif"
-            onChange = {onChange}
-            disabled = {!isEditing}
-        />
+            Upload your portrait
+            {profilePic && 
+                <img src={profilePic} alt="Profile" height = "300px" width = "300px" />}
+            <input
+                type = "file"
+                accept = "image/png, image/jpeg, image/gif, image.jpg"
+                onChange = {onChange}
+                disabled = {!isEditing}
+            />
         </div>
         </>
     )
