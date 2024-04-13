@@ -132,14 +132,8 @@ function ProfilePic({onChange, isEditing, profilePic}){
     
     return (
         <>  
-            <div className = 'profilePic'>
-                {profilePic && <img src={profilePic} alt="Profile" />}
-                {!profilePic && isEditing && (
-            <div className="profilePic__label">
-                <span>Upload Image</span>
-            </div>
-        )}
-      
+        <div className = 'profilePic'>
+            {profilePic && <img src={profilePic} alt="Profile" height = "300px" width = "300px" />}
         <input
             type = "file"
             accept = "image/png, image/jpeg, image/gif"
