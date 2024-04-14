@@ -80,7 +80,7 @@ function SubmitBtn({handlesubmit, handleDisable}) {
         <>
         <button
             onClick = {handleClick} 
-            className = "button edit"
+            className = "button edit submit"
         >
         Submit
         </button>
@@ -97,7 +97,7 @@ function EditBtn({handleEdit}) {
         <>
         <button
             onClick = {handleClick}
-            className = "button edit"
+            className = "button edit submit"
         >
         Edit
         </button>
@@ -130,7 +130,7 @@ function ProfilePic({onChange, isEditing, profilePic}){
     return (
         <>  
         <div className = 'profilePic'>
-            Upload your portrait
+            {isEditing && !profilePic && <label>Upload your portrait</label>}
             {profilePic && 
                 <img src={profilePic} alt="Profile" height = "300px" width = "300px" />}
             <input

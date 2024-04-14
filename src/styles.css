@@ -40,20 +40,12 @@ button:hover {
   margin-top: 10px;
 }
 
-.button.edit{
+.button.edit.submit{
   width: 100px;
   height:100%;
   border-radius: 10px;
-  border: solid;
+  border: solid lightgray;
 }
-
-.button.submit{
-  width: 10%;
-  height:100%;
-  border-radius: 10px;
-  border: solid;
-}
-
 
 /* This is profile info's style */
 .profile-info {
@@ -106,10 +98,11 @@ input::file-selector-button:hover {
 }
 
 .profilePic{
-  height: 300px;
-  width: 300px;
+  height: 350px;
+  width: 304px;
   border: 2px solid gray; 
   border-radius: 10px;
   box-sizing: border-box; 
+  overflow: hidden;
   background-color: white;
 }
