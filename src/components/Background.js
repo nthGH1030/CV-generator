@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import '.././styles.css'
 import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 
 /*
@@ -30,13 +31,16 @@ export default function Background() {
             {Object.entries(inputValues).map(([key, value]) => {
                 if (key ==='Birth')
                 {
-                    console.log('key = Birth');
                     return (
-                        <DatePicker 
-                        selected={startDate} 
-                        onChange={(date) => setStartDate(date)}
-                        isEditing = {isEditing}
-                    />
+                        <div>
+                        <ProfileInfoBirth 
+                            key = {key}
+                            label = {key}
+                            selected={startDate} 
+                            onChange={(date) => setStartDate(date)}
+                            isEditing = {isEditing}
+                        />
+                        </div>
                     )
                 } else {
             return (
@@ -137,6 +141,25 @@ function ProfileInfo({label, value, onChange, isEditing}) {
             />
             <br />
         </div>
+    )
+}
+
+function ProfileInfoBirth({label, selected, onChange, isEditing}){
+
+    return(
+        <div className = "profile-info">
+        <label className = "label">{`${label} :`} </label>
+
+        <DatePicker
+            selected={selected} 
+            onChange = {onChange}
+            onSelect = {onChange}
+            disabled={!isEditing}
+            showMonthDropdown
+            showYearDropdown
+            dropdownMode="select"
+        />
+    </div>
     )
 }
 
