@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react'
 import '.././styles.css'
+import DatePicker from "react-datepicker";
 
 
 /*
@@ -20,12 +21,25 @@ export default function Background() {
     });
     const [isEditing, setEditing] = useState(true);
     const [profilePic, setProfilePic] = useState(null);
+    const [startDate, setStartDate] = useState(new Date());
 
     return(
         <>
         <div className = "profile-container">
             <div className = "profile-infoContainer">
-            {Object.entries(inputValues).map(([key, value]) => (
+            {Object.entries(inputValues).map(([key, value]) => {
+                if (key ==='Birth')
+                {
+                    console.log('key = Birth');
+                    return (
+                        <DatePicker 
+                        selected={startDate} 
+                        onChange={(date) => setStartDate(date)}
+                        isEditing = {isEditing}
+                    />
+                    )
+                } else {
+            return (
                 <ProfileInfo 
                     key = {key}
                     label = {key}
@@ -33,7 +47,9 @@ export default function Background() {
                     onChange = {(e) => setInputValues({...inputValues, [key]: e.target.value})}
                     isEditing = {isEditing}
                 />
-            ))}
+                    );
+                        }
+            })}
             </div>
 
             <div className = "profile-pic-container">
@@ -73,7 +89,6 @@ function SubmitBtn({handlesubmit, handleDisable}) {
     const handleClick = () => {
         handlesubmit();
         handleDisable();
-
     }
     
     return (
