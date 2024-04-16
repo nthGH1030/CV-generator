@@ -31,8 +31,7 @@ export default function Background() {
             {Object.entries(inputValues).map(([key, value]) => {
                 if (key ==='Birth')
                 {
-                    return (
-                        <div>
+                    return (          
                         <ProfileInfoBirth 
                             key = {key}
                             label = {key}
@@ -40,7 +39,6 @@ export default function Background() {
                             onChange={(date) => setStartDate(date)}
                             isEditing = {isEditing}
                         />
-                        </div>
                     )
                 } else {
             return (
