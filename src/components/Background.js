@@ -3,6 +3,13 @@ import '.././styles.css'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+/*
+1. How to add and remove a field ?
+- when click on the add button, update the state and generate a new component
+- When click on the remove button, remove the component - 
+
+*/
+
 
 export default function Background() {
     const [inputValues, setInputValues] = useState({
@@ -14,8 +21,10 @@ export default function Background() {
         Phone: ''
     });
     const [workExp, setWorkExp] = useState ({
+        id: '',
         Title: '',
         Company: '',
+        Period: '',
         Description: '',
     })
     const [isEditing, setEditing] = useState(true);
@@ -73,7 +82,9 @@ export default function Background() {
         </div>
         <div className = "profile-container">
             <div className = "profile-infoContainer">
-            {Object.entries(workExp).map(([key, value]) => {
+            {Object.entries(workExp)
+            .filter(([key])=> key !== 'id')
+            .map(([key, value]) => {
                
             return (
                 <WorkExperience 
