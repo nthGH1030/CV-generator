@@ -4,13 +4,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 
-/*
-1. Once user clicked submit, change state to lock furhter user input, unclok user clicked edit button
-2. How to show the profile pic uploaded by user
-3. 
-
-*/
-
 export default function Background() {
     const [inputValues, setInputValues] = useState({
         Name: '', 
@@ -20,6 +13,11 @@ export default function Background() {
         Email: '', 
         Phone: ''
     });
+    const [workExp, setWorkExp] = useState ({
+        Title: '',
+        Company: '',
+        Description: '',
+    })
     const [isEditing, setEditing] = useState(true);
     const [profilePic, setProfilePic] = useState(null);
     const [startDate, setStartDate] = useState(new Date());
@@ -72,6 +70,31 @@ export default function Background() {
                     />
                 </div>
             </div>
+        </div>
+        <div className = "profile-container">
+            <div className = "profile-infoContainer">
+            {Object.entries(workExp).map(([key, value]) => {
+               
+            return (
+                <WorkExperience 
+                    key = {key}
+                    label = {key}
+                    value = {value}
+                    onChange = {(e) => setWorkExp({...workExp, [key]: e.target.value})}
+                    isEditing = {isEditing}
+                />
+                    );
+            })}
+            </div>
+            <div className = "edit-submit-container">
+                    <EditBtn
+                        handleEdit = {() => setEditing(true)}
+                    />
+                    <SubmitBtn
+                        handlesubmit = {() => handleSubmit(inputValues, profilePic)}
+                        handleDisable = {() => setEditing(false)}
+                    />
+                </div>
         </div>
         </>
     )
@@ -179,4 +202,23 @@ function ProfilePic({onChange, isEditing, profilePic}){
         </>
     )
 
+}
+
+function WorkExperience({label, value, onChange, isEditing})
+{
+    return(
+        <div className = "profile-info">
+            <label className = "label">{`${label} :`} </label>
+        
+            <input
+                type = "text" 
+                value = {value}
+                onChange = {onChange}
+                placeholder = {`Enter ${label}`}
+                className = {`inputField`}
+                disabled = {!isEditing} 
+            />
+            <br />
+        </div>
+    )
 }
