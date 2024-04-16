@@ -5,8 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 /*
 1. How to add and remove a field ?
-- when click on the add button, update the state and generate a new component
-- When click on the remove button, remove the component - 
+- when click on the add button, update the state and append to the state array
 
 */
 
@@ -21,7 +20,7 @@ export default function Background() {
         Phone: ''
     });
     const [workExp, setWorkExp] = useState ({
-        id: '',
+        id: 1,
         Title: '',
         Company: '',
         Period: '',
@@ -94,8 +93,10 @@ export default function Background() {
                     onChange = {(e) => setWorkExp({...workExp, [key]: e.target.value})}
                     isEditing = {isEditing}
                 />
+                
                     );
             })}
+            {console.log(workExp)}
             </div>
             <div className = "edit-submit-container">
                     <EditBtn
