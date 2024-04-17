@@ -99,29 +99,27 @@ export default function Background() {
             {workExp.map((experience) => (
                 <div key={experience.id}>
                     {Object.entries(experience).map(([key, value]) => (
-                        <WorkExperience
-                            key={key}
-                            label={key}
-                            value={value}
-                            onChange={(e) => {
-                            const updatedWorkExp = [...workExp];
-                            const index = updatedWorkExp.findIndex((exp) => exp.id === experience.id);
-                            updatedWorkExp[index] = { ...updatedWorkExp[index], [key]: e.target.value };
-                            setWorkExp(updatedWorkExp);
-                            }}
-                            isEditing={isEditing}
+                           
+                    <WorkExperience
+                        key={key}
+                        label={key}
+                        value={value}
+                        onChange={(e) => {
+                        const updatedWorkExp = [...workExp];
+                        const index = updatedWorkExp.findIndex((exp) => exp.id === experience.id);
+                        updatedWorkExp[index] = { ...updatedWorkExp[index], [key]: e.target.value };
+                        setWorkExp(updatedWorkExp);
+                        }}
+                        isEditing={isEditing}
                     />
                     ))}
+                <div className = "add-remove-container">
+                    <AddItem
+                        handleAdd = {() => handleAdd()}
+                    />
                 </div>
-                ))}
-            </div>
-            <div className = "add-remove-container">
-                <AddItem
-                    handleAdd = {() => handleAdd()}
-                />
-            </div>
 
-            <div className = "edit-submit-container">
+                <div className = "edit-submit-container">
                     <EditBtn
                         handleEdit = {() => setEditing(true)}
                     />
@@ -130,6 +128,11 @@ export default function Background() {
                         handleDisable = {() => setEditing(false)}
                     />
                 </div>
+                </div>
+                
+                ))}
+            </div>
+
         </div>
         </>
     )
