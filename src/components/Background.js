@@ -19,16 +19,31 @@ export default function Background() {
         Email: '', 
         Phone: ''
     });
-    const [workExp, setWorkExp] = useState ({
+    const [workExp, setWorkExp] = useState ([{
         id: 1,
         Title: '',
         Company: '',
         Period: '',
         Description: '',
-    })
+    }])
     const [isEditing, setEditing] = useState(true);
     const [profilePic, setProfilePic] = useState(null);
     const [startDate, setStartDate] = useState(new Date());
+
+    function handleAdd() {
+    const newId = workExp.length > 0 ? workExp[workExp.length - 1].id + 1 : 1;
+    const newWorkExp = [...workExp, {
+        id: newId,
+        Title: '',
+        Company: '',
+        Period: '',
+        Description: '',
+    }];
+    setWorkExp(newWorkExp);
+    console.log(workExp);
+
+    }
+
 
     return(
         <>
@@ -81,23 +96,31 @@ export default function Background() {
         </div>
         <div className = "profile-container">
             <div className = "profile-infoContainer">
-            {Object.entries(workExp)
-            .filter(([key])=> key !== 'id')
-            .map(([key, value]) => {
-               
-            return (
-                <WorkExperience 
-                    key = {key}
-                    label = {key}
-                    value = {value}
-                    onChange = {(e) => setWorkExp({...workExp, [key]: e.target.value})}
-                    isEditing = {isEditing}
-                />
-                
-                    );
-            })}
-            {console.log(workExp)}
+            {workExp.map((experience) => (
+                <div key={experience.id}>
+                    {Object.entries(experience).map(([key, value]) => (
+                        <WorkExperience
+                            key={key}
+                            label={key}
+                            value={value}
+                            onChange={(e) => {
+                            const updatedWorkExp = [...workExp];
+                            const index = updatedWorkExp.findIndex((exp) => exp.id === experience.id);
+                            updatedWorkExp[index] = { ...updatedWorkExp[index], [key]: e.target.value };
+                            setWorkExp(updatedWorkExp);
+                            }}
+                            isEditing={isEditing}
+                    />
+                    ))}
+                </div>
+                ))}
             </div>
+            <div className = "add-remove-container">
+                <AddItem
+                    handleAdd = {() => handleAdd()}
+                />
+            </div>
+
             <div className = "edit-submit-container">
                     <EditBtn
                         handleEdit = {() => setEditing(true)}
@@ -232,5 +255,19 @@ function WorkExperience({label, value, onChange, isEditing})
             />
             <br />
         </div>
+    )
+}
+
+function AddItem({handleAdd})
+{
+    return (
+        <>
+        <button
+            onClick = {handleAdd}
+            className = "button add remove"
+        >
+        +
+        </button>
+        </>
     )
 }
