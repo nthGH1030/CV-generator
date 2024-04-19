@@ -30,7 +30,7 @@ export default function Background() {
     const [profilePic, setProfilePic] = useState(null);
     const [startDate, setStartDate] = useState(new Date());
 
-    function handleAdd() {
+    let handleAdd = () => {
     const newId = workExp.length > 0 ? workExp[workExp.length - 1].id + 1 : 1;
     const newWorkExp = [...workExp, {
         id: newId,
@@ -41,9 +41,14 @@ export default function Background() {
     }];
     setWorkExp(newWorkExp);
     console.log(workExp);
-
     }
 
+    let handleExperienceChange = (id,key, e) => {
+        const updatedWorkExp = [...workExp];
+        const index = updatedWorkExp.findIndex((exp) => exp.id === id);
+        updatedWorkExp[index] = {...updatedWorkExp[index], [key]: e.target.value};
+        setWorkExp(updatedWorkExp);
+    }
 
     return(
         <>
@@ -96,6 +101,11 @@ export default function Background() {
         </div>
         <div className = "profile-container">
             <div className = "profile-infoContainer">
+            <div className = "add-remove-container">
+                    <AddItem
+                        handleAdd = {() => handleAdd()}
+                    />
+                </div>
             {workExp.map((experience) => (
                 <div key={experience.id}>
                     {Object.entries(experience).map(([key, value]) => (
@@ -105,19 +115,11 @@ export default function Background() {
                         label={key}
                         value={value}
                         onChange={(e) => {
-                        const updatedWorkExp = [...workExp];
-                        const index = updatedWorkExp.findIndex((exp) => exp.id === experience.id);
-                        updatedWorkExp[index] = { ...updatedWorkExp[index], [key]: e.target.value };
-                        setWorkExp(updatedWorkExp);
-                        }}
+                        handleExperienceChange(experience.id,key, e)}}
                         isEditing={isEditing}
                     />
                     ))}
-                <div className = "add-remove-container">
-                    <AddItem
-                        handleAdd = {() => handleAdd()}
-                    />
-                </div>
+                
 
                 <div className = "edit-submit-container">
                     <EditBtn
