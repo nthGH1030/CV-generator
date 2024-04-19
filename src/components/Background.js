@@ -45,7 +45,7 @@ export default function Background() {
     let handleRemove = (id) => {
         if (workExp.length <= 1)
         {
-            alert("you cannot delete the only field")
+            alert("You cannot delete the only field")
         }
         else {
             const updatedWorkExp = [...workExp];
@@ -54,7 +54,6 @@ export default function Background() {
             setWorkExp(updatedWorkExp);
             console.log(workExp);
         }
-
     }
 
     let handleExperienceChange = (id,key, e) => {
@@ -68,7 +67,7 @@ export default function Background() {
         <>
         <div className = "profile-container">
             <div className = "profile-infoContainer">
-            {Object.entries(inputValues).map(([key, value]) => {
+            {Object.entries(inputValues).map(([key, value])=> {
                 if (key ==='Birth')
                 {
                     return (          
@@ -125,7 +124,7 @@ export default function Background() {
                 </div>
             {workExp.map((experience) => (
                 <div key={experience.id}>
-                    {Object.entries(experience).map(([key, value]) => (
+                    {Object.entries(experience).filter(([key,value]) => key !='id').map(([key, value]) => (
                            
                     <WorkExperience
                         key={key}
