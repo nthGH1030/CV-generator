@@ -40,7 +40,13 @@ export default function Background() {
         Description: '',
     }];
     setWorkExp(newWorkExp);
-    console.log(workExp);
+    }
+
+    let handleRemove = (id) => {
+        const updatedWorkExp = [...workExp];
+        const index = updatedWorkExp.findIndex((exp) => exp.id === id);
+        updatedWorkExp.splice(index , 1);
+        setWorkExp(updatedWorkExp);
     }
 
     let handleExperienceChange = (id,key, e) => {
@@ -104,6 +110,9 @@ export default function Background() {
             <div className = "add-remove-container">
                     <AddItem
                         handleAdd = {() => handleAdd()}
+                    />
+                    <RemoveItem
+                        handleRemove = {() => handleRemove()}
                     />
                 </div>
             {workExp.map((experience) => (
@@ -272,6 +281,20 @@ function AddItem({handleAdd})
             className = "button add remove"
         >
         +
+        </button>
+        </>
+    )
+}
+
+function RemoveItem({handleRemove})
+{
+    return (
+        <>
+        <button
+            onClick = {handleRemove}
+            className = "button add remove"
+        >
+        X
         </button>
         </>
     )
