@@ -43,10 +43,18 @@ export default function Background() {
     }
 
     let handleRemove = (id) => {
-        const updatedWorkExp = [...workExp];
-        const index = updatedWorkExp.findIndex((exp) => exp.id === id);
-        updatedWorkExp.splice(index , 1);
-        setWorkExp(updatedWorkExp);
+        if (workExp.length <= 1)
+        {
+            alert("you cannot delete the only field")
+        }
+        else {
+            const updatedWorkExp = [...workExp];
+            const index = updatedWorkExp.findIndex((exp) => exp.id === id);
+            updatedWorkExp.splice(index , 1);
+            setWorkExp(updatedWorkExp);
+            console.log(workExp);
+        }
+
     }
 
     let handleExperienceChange = (id,key, e) => {
