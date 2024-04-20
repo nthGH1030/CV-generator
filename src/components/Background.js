@@ -2,6 +2,8 @@ import {useState, useEffect} from 'react'
 import '.././styles.css'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 
 /*
 1. How to add and remove a field ?
@@ -65,6 +67,7 @@ export default function Background() {
 
     return(
         <>
+        <div id = 'pdf-container'>
         <div className = "profile-container">
             <div className = "profile-infoContainer">
             {Object.entries(inputValues).map(([key, value])=> {
@@ -115,10 +118,10 @@ export default function Background() {
         <div className = "profile-container">
             <div className = "profile-infoContainer">
             <div className = "add-remove-container">
-                    <AddItem
+                    <AddBtn
                         handleAdd = {() => handleAdd()}
                     />
-                    <RemoveItem
+                    <RemoveBtn
                         handleRemove = {() => handleRemove()}
                     />
                 </div>
@@ -151,6 +154,8 @@ export default function Background() {
                 ))}
             </div>
 
+        </div>
+        <DownloadBtn/>
         </div>
         </>
     )
@@ -279,7 +284,7 @@ function WorkExperience({label, value, onChange, isEditing})
     )
 }
 
-function AddItem({handleAdd})
+function AddBtn({handleAdd})
 {
     return (
         <>
@@ -293,7 +298,7 @@ function AddItem({handleAdd})
     )
 }
 
-function RemoveItem({handleRemove})
+function RemoveBtn({handleRemove})
 {
     return (
         <>
@@ -304,5 +309,33 @@ function RemoveItem({handleRemove})
         X
         </button>
         </>
+    )
+}
+
+function DownloadBtn()
+{
+    const handleDownload = () => {
+        const inputElement = document.getElementById('pdf-container');
+    
+        // Get the dimensions of the container element
+        const { width, height } = inputElement.getBoundingClientRect();
+    
+        // Convert the container to Canvas
+        html2canvas(inputElement, { width, height, useCORS: true }).then((canvas) => {
+          const imgData = canvas.toDataURL('image/png');
+          const pdf = new jsPDF('p', 'px', [width, height]);
+    
+          // Add the canvas to PDF
+          pdf.addImage(imgData, 'PNG', 0, 0, width, height);
+    
+          // Download the PDF
+          pdf.save('CV.pdf');
+        });
+      };    
+    
+    return (
+        <button onClick={handleDownload} className="button download">
+            Download as PDF
+        </button>
     )
 }
