@@ -1,7 +1,13 @@
+/*output pdf container */
+.pdf-container{
+  margin: 20px;
+  padding-top:30px;
+}
+
 /* profile container */
 .profile-container {
   display: flex;
-  margin: 20px;
+  margin: 30px;
   border: solid;
   border-radius: 10px;
   background-color: #F0F0F0;

@@ -67,7 +67,7 @@ export default function Background() {
 
     return(
         <>
-        <div id = 'pdf-container'>
+        <div id = 'pdf-container' className = 'pdf-container'>
         <div className = "profile-container">
             <div className = "profile-infoContainer">
             {Object.entries(inputValues).map(([key, value])=> {
@@ -155,8 +155,9 @@ export default function Background() {
             </div>
 
         </div>
-        <DownloadBtn/>
         </div>
+        <DownloadBtn/>
+        
         </>
     )
     
@@ -320,18 +321,32 @@ function DownloadBtn()
         // Get the dimensions of the container element
         const { width, height } = inputElement.getBoundingClientRect();
     
+        // Calculate the aspect ratio of the container
+        const aspectRatio = width / height;
+    
+        // Define the target paper size as A3 or A4
+        const paperSize = aspectRatio > 1.4 ? 'a3' : 'a4';
+    
         // Convert the container to Canvas
-        html2canvas(inputElement, { width, height, useCORS: true }).then((canvas) => {
+        html2canvas(inputElement, { width, height, useOverflow: true }).then((canvas) => {
           const imgData = canvas.toDataURL('image/png');
-          const pdf = new jsPDF('p', 'px', [width, height]);
+    
+          const pdf = new jsPDF('p', 'pt', paperSize);
+    
+          // Determine the scale factor to fit the container into the PDF page
+          const scaleFactor = pdf.internal.pageSize.getWidth() / width;
+    
+          // Calculate the scaled dimensions
+          const scaledWidth = width * scaleFactor;
+          const scaledHeight = height * scaleFactor;
     
           // Add the canvas to PDF
-          pdf.addImage(imgData, 'PNG', 0, 0, width, height);
+          pdf.addImage(imgData, 'PNG', 0, 0, scaledWidth, scaledHeight);
     
           // Download the PDF
           pdf.save('CV.pdf');
         });
-      };    
+      };  
     
     return (
         <button onClick={handleDownload} className="button download">
