@@ -324,8 +324,8 @@ function DownloadBtn()
         // Calculate the aspect ratio of the container
         const aspectRatio = width / height;
     
-        // Define the target paper size as A3 or A4
-        const paperSize = aspectRatio > 1.4 ? 'a3' : 'a4';
+        // Define the target paper size 
+        const paperSize = 'a4';
     
         // Convert the container to Canvas
         html2canvas(inputElement, { width, height, useOverflow: true }).then((canvas) => {
